@@ -8,7 +8,7 @@ const mapStateToProps = state => {
   }
 }
 
-const mapDispatchToProps = (dispatch, props) => {
+const mapDispatchToProps = dispatch => {
   return {
     onUndo: () => {
       document.getElementById('undo-btn').style.display = 'none';
@@ -18,14 +18,7 @@ const mapDispatchToProps = (dispatch, props) => {
 }
 
 class Undo extends Component {
-  componentWillReceiveProps() {
-    console.log('props');
-  }
-  componentWillUpdate() {
-    console.log('update');
-  }
   render() {
-    console.log('rendering');
     return (
         <div className="undo">
             <button id="undo-btn" onClick={this.props.onUndo} disabled={!this.props.canUndo}>
