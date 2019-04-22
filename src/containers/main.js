@@ -56,7 +56,7 @@ class Main extends Component {
                     <List todos={filteredTodos} removeItemHandler={this.removeItemHandler} toggleCompleteHandler={this.toggleCompleteHandler} />
                 </div>
                 <div className="filter">
-                    <Filters setFilterHandler={this.setFilterHandler} />
+                    <Filters setFilterHandler={this.setFilterHandler} currentSetting={this.props.filterReducer} />
                 </div>
             </div>
         );

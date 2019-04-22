@@ -7,16 +7,19 @@ class Filters extends Component {
         <div>
             <FilterOption
                 setFilterHandler={this.props.setFilterHandler}
+                currentSetting={this.props.currentSetting}
                 filter="SHOW_ALL"
                 text="All"
             />
             <FilterOption
                 setFilterHandler={this.props.setFilterHandler}
+                currentSetting={this.props.currentSetting}
                 filter="SHOW_INPROGRESS"
                 text="In progress"
             />
             <FilterOption
                 setFilterHandler={this.props.setFilterHandler}
+                currentSetting={this.props.currentSetting}
                 filter="SHOW_COMPLETED"
                 text="Completed"
             />
