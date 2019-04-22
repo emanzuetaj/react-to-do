@@ -1,7 +1,6 @@
 export default (state = [], action) => {
     switch (action.type) {
         case 'ADD':
-            // TODO: add to todos, then return
             return [...state, {
                 id: action.todoItem.id,
                 name: action.todoItem.name,
@@ -18,8 +17,8 @@ export default (state = [], action) => {
                 };
             });
         case 'REMOVE':
-            const newState = state.filter((value) => {
-                return value.id !== action.itemId;
+            const newState = state.filter((todo) => {
+                return todo.id !== action.itemId;
             });
             return newState;
         default:

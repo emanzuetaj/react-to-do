@@ -1,14 +1,7 @@
-export default (state ={}, action) => {
+export default (state = 'SHOW_ALL', action) => {
     switch (action.type) {
-        case 'SHOW_ALL':
-            // TODO: return all
-            break;
-        case 'SHOW_COMPLETE':
-            // TODO: return complete
-            break;
-        case 'SHOW_INCOMPLETE':
-            // TODO: return incomplete
-            break;
+        case 'SET_FILTER':
+            return action.setting;
         default:
             return state;
     }
