@@ -8,8 +8,15 @@ export default (state = [], action) => {
                 completed: false
             }]
         case 'TOGGLE_COMPLETE':
-            // TODO: toggle, then return
-            break;
+            return state.map(todo => {
+                if (todo.id !== action.itemId) {
+                    return todo;
+                }
+                return {
+                    ...todo,
+                    completed: !todo.completed
+                };
+            });
         case 'REMOVE':
             const newState = state.filter((value) => {
                 return value.id !== action.itemId;

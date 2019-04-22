@@ -7,7 +7,7 @@ class List extends Component {
     return (
         <ul>
             {todos.map(todo => 
-                <TodoItem key={todo.id} removeItemHandler={this.props.removeItemHandler} {...todo} />    
+                <TodoItem key={todo.id} removeItemHandler={this.props.removeItemHandler} toggleCompleteHandler={this.props.toggleCompleteHandler} {...todo} />    
             )}
         </ul>
     );

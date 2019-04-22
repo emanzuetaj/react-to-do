@@ -1,5 +1,6 @@
-export const toggleComplete = () => dispatch => {
+export const toggleComplete = (id) => dispatch => {
     dispatch({
-        type: 'TOGGLE_COMPLETE'
+        type: 'TOGGLE_COMPLETE',
+        itemId: id
     })
 }
