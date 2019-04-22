@@ -44,7 +44,8 @@ class Main extends Component {
         const messageDiv = document.getElementById('message');
         messageDiv.innerHTML = message;
         messageDiv.style.display = 'block';
-        setTimeout(() => {
+        clearTimeout(this.displayMessageTimeout);
+        this.displayMessageTimeout = setTimeout(() => {
             messageDiv.style.display = 'none';
         }, 3000);
     }
