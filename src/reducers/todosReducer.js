@@ -11,8 +11,10 @@ export default (state = [], action) => {
             // TODO: toggle, then return
             break;
         case 'REMOVE':
-            // TODO: delete todo, then return
-            break;
+            const newState = state.filter((value) => {
+                return value.id !== action.itemId;
+            });
+            return newState;
         default:
             return state;
     }

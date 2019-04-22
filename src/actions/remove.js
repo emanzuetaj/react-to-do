@@ -1,5 +1,6 @@
-export const remove = () => dispatch => {
+export const remove = (id) => dispatch => {
     dispatch({
-        type: 'REMOVE'
+        type: 'REMOVE',
+        itemId: id
     })
 }
