@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-let itemId = 0;
 class Add extends Component {
   add = (event) => {
     event.preventDefault();
     const newItem = {
-        id: itemId++,
+        id: this.props.lastId + 1,
         name: this.input.value
     };
     this.props.add(newItem);

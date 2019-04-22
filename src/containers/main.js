@@ -18,7 +18,8 @@ const mapDispatchToProps = dispatch => ({
 const mapStateToProps = state => {
     return {
         currentFilterSetting: state.filterReducer,
-        todos: getFilteredTodos(state.todosReducer.present, state.filterReducer)
+        todos: getFilteredTodos(state.todosReducer.present, state.filterReducer),
+        lastId: typeof state.todosReducer.present[state.todosReducer.present.length - 1] === 'undefined' ? 0 : state.todosReducer.present[state.todosReducer.present.length - 1].id
     }
 };
 const getFilteredTodos = (todos, filterSetting) => {
@@ -73,7 +74,7 @@ class Main extends Component {
         const filteredTodos = this.props.todos;
         return (
             <div className="main">
-                <Add add={this.add} />
+                <Add add={this.add} lastId={this.props.lastId} />
                 <div id="message">
                     <span id="message-text"></span>
                     <Undo />
