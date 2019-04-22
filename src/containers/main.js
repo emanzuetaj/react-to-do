@@ -7,6 +7,7 @@ import { add } from '../actions/add';
 import { remove } from '../actions/remove';
 import { toggleComplete } from '../actions/toggleComplete';
 import { setFilter } from '../actions/setFilter';
+import Undo from './undo';
 
 const mapDispatchToProps = dispatch => ({
   add: (todoItem) => dispatch(add(todoItem)),
@@ -18,7 +19,6 @@ const mapStateToProps = state => ({
     ...state
 });
 class Main extends Component {
-    message = '';
     add = (newItem) => {
         if (!newItem.name) {
             this.displayMessage('Item name cannot be empty.');
@@ -42,15 +42,17 @@ class Main extends Component {
     }
     displayMessage = (message) => {
         const messageDiv = document.getElementById('message');
-        messageDiv.innerHTML = message;
+        const messageText = document.getElementById('message-text');
+        messageText.innerHTML = message;
         messageDiv.style.display = 'block';
+        document.getElementById('undo-btn').style.display = 'block';
         clearTimeout(this.displayMessageTimeout);
         this.displayMessageTimeout = setTimeout(() => {
             messageDiv.style.display = 'none';
         }, 3000);
     }
     render() {
-        const todos = this.props.todosReducer;
+        const todos = this.props.todosReducer.present;
         let filteredTodos = [];
         let filterListOptions;
         switch (this.props.filterReducer) {
@@ -75,7 +77,10 @@ class Main extends Component {
         return (
             <div className="main">
                 <Add add={this.add} />
-                <div id="message"></div>
+                <div id="message">
+                    <span id="message-text"></span>
+                    <Undo />
+                </div>
                 <div className="list">
                     <List todos={filteredTodos} removeItemHandler={this.removeItemHandler} toggleCompleteHandler={this.toggleCompleteHandler} />
                 </div>
