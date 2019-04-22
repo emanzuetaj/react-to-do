@@ -51,6 +51,7 @@ class Main extends Component {
     render() {
         const todos = this.props.todosReducer;
         let filteredTodos = [];
+        let filterListOptions;
         switch (this.props.filterReducer) {
             case 'SHOW_COMPLETED':
                 filteredTodos = todos.filter((todo) => {
@@ -67,6 +68,9 @@ class Main extends Component {
                 filteredTodos = todos;
                 break;
         }
+        if (todos.length > 0) {
+            filterListOptions = <Filters setFilterHandler={this.setFilterHandler} currentSetting={this.props.filterReducer} />;
+        }
         return (
             <div className="main">
                 <Add add={this.add} />
@@ -75,7 +79,7 @@ class Main extends Component {
                     <List todos={filteredTodos} removeItemHandler={this.removeItemHandler} toggleCompleteHandler={this.toggleCompleteHandler} />
                 </div>
                 <div className="filter">
-                    <Filters setFilterHandler={this.setFilterHandler} currentSetting={this.props.filterReducer} />
+                    {filterListOptions}
                 </div>
             </div>
         );
