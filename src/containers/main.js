@@ -18,17 +18,35 @@ const mapStateToProps = state => ({
     ...state
 });
 class Main extends Component {
+    message = '';
     add = (newItem) => {
+        if (!newItem.name) {
+            this.displayMessage('Item name cannot be empty.');
+            return;
+        }
         this.props.add(newItem);
+        this.setFilterHandler('SHOW_ALL');
+        this.displayMessage(newItem.name + ' added.');
     }
-    removeItemHandler = (id) => {
-        this.props.remove(id);
+    removeItemHandler = (todoItem) => {
+        this.props.remove(todoItem.id);
+        this.displayMessage(todoItem.name + ' removed.');
     }
-    toggleCompleteHandler = (id) => {
-        this.props.toggleComplete(id);
+    toggleCompleteHandler = (todoItem) => {
+        this.props.toggleComplete(todoItem.id);
+        const markedText = todoItem.completed ? 'in progress' : 'complete';
+        this.displayMessage(todoItem.name + ' marked ' + markedText + '.');
     }
     setFilterHandler = (setting) => {
         this.props.setFilter(setting);
+    }
+    displayMessage = (message) => {
+        const messageDiv = document.getElementById('message');
+        messageDiv.innerHTML = message;
+        messageDiv.style.display = 'block';
+        setTimeout(() => {
+            messageDiv.style.display = 'none';
+        }, 3000);
     }
     render() {
         const todos = this.props.todosReducer;
@@ -52,6 +70,7 @@ class Main extends Component {
         return (
             <div className="main">
                 <Add add={this.add} />
+                <div id="message"></div>
                 <div className="list">
                     <List todos={filteredTodos} removeItemHandler={this.removeItemHandler} toggleCompleteHandler={this.toggleCompleteHandler} />
                 </div>

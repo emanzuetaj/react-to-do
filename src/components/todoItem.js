@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 class TodoItem extends Component {
   remove = (event) => {
-    this.props.removeItemHandler(this.props.id);
+    this.props.removeItemHandler(this.props);
   };
   toggleComplete = (event) => {
-    this.props.toggleCompleteHandler(this.props.id);
+    this.props.toggleCompleteHandler(this.props);
   };
   render() {
     const status = this.props.completed ? 'completed' : 'in progress';
