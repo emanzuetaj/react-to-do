@@ -1,6 +1,6 @@
-export const add = () => dispatch => {
+export const add = (todoItem) => dispatch => {
     dispatch({
         type: 'ADD',
-        data: 'added action triggered'
+        todoItem: todoItem
     })
 }
