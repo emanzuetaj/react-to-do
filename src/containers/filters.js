@@ -4,7 +4,7 @@ import FilterOption from '../components/filterOption';
 class Filters extends Component {
   render() {
     return (
-        <div>
+        <div className="filter">
             <FilterOption
                 setFilterHandler={this.props.setFilterHandler}
                 currentSetting={this.props.currentSetting}

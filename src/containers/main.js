@@ -15,13 +15,31 @@ const mapDispatchToProps = dispatch => ({
   toggleComplete: (id) => dispatch(toggleComplete(id)),
   setFilter: (setting) => dispatch(setFilter(setting))
 });
-const mapStateToProps = state => ({
-    ...state
-});
+const mapStateToProps = state => {
+    return {
+        currentFilterSetting: state.filterReducer,
+        todos: getFilteredTodos(state.todosReducer.present, state.filterReducer)
+    }
+};
+const getFilteredTodos = (todos, filterSetting) => {
+    switch (filterSetting) {
+        case 'SHOW_COMPLETED':
+            return todos.filter((todo) => {
+                return todo.completed;
+            });
+        case 'SHOW_INPROGRESS':
+            return todos.filter((todo) => {
+                return !todo.completed;
+            });
+        case 'SHOW_ALL':
+        default:
+            return todos;
+    }
+}
 class Main extends Component {
     add = (newItem) => {
         if (!newItem.name) {
-            this.displayMessage('Item name cannot be empty.');
+            this.displayMessage('Item name cannot be empty.', true);
             return;
         }
         this.props.add(newItem);
@@ -40,40 +58,19 @@ class Main extends Component {
     setFilterHandler = (setting) => {
         this.props.setFilter(setting);
     }
-    displayMessage = (message) => {
+    displayMessage = (message, hideUndo) => {
+        document.getElementById('undo-btn').style.display = hideUndo ? 'none' : 'block';
         const messageDiv = document.getElementById('message');
         const messageText = document.getElementById('message-text');
         messageText.innerHTML = message;
         messageDiv.style.display = 'block';
-        document.getElementById('undo-btn').style.display = 'block';
         clearTimeout(this.displayMessageTimeout);
         this.displayMessageTimeout = setTimeout(() => {
             messageDiv.style.display = 'none';
         }, 3000);
     }
     render() {
-        const todos = this.props.todosReducer.present;
-        let filteredTodos = [];
-        let filterListOptions;
-        switch (this.props.filterReducer) {
-            case 'SHOW_COMPLETED':
-                filteredTodos = todos.filter((todo) => {
-                    return todo.completed;
-                });
-                break;
-            case 'SHOW_INPROGRESS':
-                filteredTodos = todos.filter((todo) => {
-                    return !todo.completed;
-                });
-                break;
-            case 'SHOW_ALL':
-            default:
-                filteredTodos = todos;
-                break;
-        }
-        if (todos.length > 0) {
-            filterListOptions = <Filters setFilterHandler={this.setFilterHandler} currentSetting={this.props.filterReducer} />;
-        }
+        const filteredTodos = this.props.todos;
         return (
             <div className="main">
                 <Add add={this.add} />
@@ -81,12 +78,8 @@ class Main extends Component {
                     <span id="message-text"></span>
                     <Undo />
                 </div>
-                <div className="list">
-                    <List todos={filteredTodos} removeItemHandler={this.removeItemHandler} toggleCompleteHandler={this.toggleCompleteHandler} />
-                </div>
-                <div className="filter">
-                    {filterListOptions}
-                </div>
+                <List todos={filteredTodos} removeItemHandler={this.removeItemHandler} toggleCompleteHandler={this.toggleCompleteHandler} />
+                <Filters setFilterHandler={this.setFilterHandler} currentSetting={this.props.currentFilterSetting} />
             </div>
         );
     }

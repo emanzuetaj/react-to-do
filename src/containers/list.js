@@ -5,7 +5,7 @@ class List extends Component {
   render() {
     const todos = this.props.todos;
     return (
-        <ul>
+        <ul className="list">
             {todos.map(todo => 
                 <TodoItem key={todo.id} removeItemHandler={this.props.removeItemHandler} toggleCompleteHandler={this.props.toggleCompleteHandler} {...todo} />    
             )}
