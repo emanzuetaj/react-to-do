@@ -6,7 +6,7 @@ class List extends Component {
     const todos = this.props.todos;
     return (
         <div className="list">
-            {todos.map(todo => 
+            {[...todos].reverse().map(todo => 
                 <TodoItem key={todo.id} removeItemHandler={this.props.removeItemHandler} toggleCompleteHandler={this.props.toggleCompleteHandler} {...todo} />    
             )}
             {todos.length === 0 ? 'No items meet filter criteria.' : ''}

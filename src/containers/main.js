@@ -77,7 +77,6 @@ class Main extends Component {
         }, 3000);
     }
     render() {
-        const filteredTodos = this.props.todos;
         return (
             <div className="main">
                 <Add add={this.add} lastId={this.props.lastId} />
@@ -86,7 +85,7 @@ class Main extends Component {
                     <span id="message-text"></span>
                     <Undo />
                 </div>
-                <List todos={filteredTodos} removeItemHandler={this.removeItemHandler} toggleCompleteHandler={this.toggleCompleteHandler} />
+                <List todos={this.props.todos} removeItemHandler={this.removeItemHandler} toggleCompleteHandler={this.toggleCompleteHandler} />
             </div>
         );
     }
