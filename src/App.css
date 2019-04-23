@@ -21,8 +21,7 @@
 }
 input:not([type="checkbox"]) {
     border: none;
-    width: 30%;
-    max-width: 200px;
+    max-width: 90%;
     border-bottom: 1px solid black;
 }
 input[type="checkbox"] {
