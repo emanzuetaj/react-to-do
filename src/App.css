@@ -28,7 +28,7 @@ input[type="checkbox"] {
   -ms-transform: scale(1.5); /* IE */
   -moz-transform: scale(1.5); /* FF */
   -webkit-transform: scale(1.5); /* Safari and Chrome */
-  padding: 10px;
+  margin: 10px;
 }
 input:focus, button:focus {
     outline: 0;
