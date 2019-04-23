@@ -1,3 +1,81 @@
+.main {
+    width: 100%;
+    text-align: center;
+}
 #message {
     display: none;
+}
+.filters, #message, .list {
+    padding-top: 10px;
+}
+#message-text {
+    max-width: 90%;
+    overflow-wrap: break-word;
+}
+.flex-row {
+    display: flex !important;
+    flex-direction: row;
+}
+.center-content {
+    justify-content: center;
+}
+input:not([type="checkbox"]) {
+    border: none;
+    width: 30%;
+    max-width: 200px;
+    border-bottom: 1px solid black;
+}
+input[type="checkbox"] {
+  -ms-transform: scale(1.5); /* IE */
+  -moz-transform: scale(1.5); /* FF */
+  -webkit-transform: scale(1.5); /* Safari and Chrome */
+  padding: 10px;
+}
+input:focus, button:focus {
+    outline: 0;
+}
+.list-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    background-color: #ebeaea;
+    border-radius: 5px;
+    margin: 10px 0;
+    min-height: 40px;
+    padding: 1%;
+    overflow-wrap: break-word;
+}
+.list-item:hover {
+    background-color: lightgray;
+}
+button {
+    margin: 0 5px;
+    background-color: transparent;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+button:hover:not(.active):not(.danger-btn) {
+    background-color: lightgray !important;
+}
+.active {
+    background-color: forestgreen;
+    color: white;
+}
+.active:hover {
+    background-color: rgb(22, 87, 22) !important;
+}
+.warning {
+    color: #c28007;
+    font-weight: 500;
+}
+.strike-text {
+    text-decoration: line-through;
+}
+.danger-btn {
+    background-color: crimson;
+    color: white;
+}
+.danger-btn:hover {
+    background-color: rgb(146, 17, 43);
 }

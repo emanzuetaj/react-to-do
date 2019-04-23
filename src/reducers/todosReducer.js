@@ -1,6 +1,27 @@
 import undoable, { distinctState } from 'redux-undo'
-
-const todos = (state = [], action) => {
+const initialState = [
+    {
+        id: 1,
+        name: 'Learn react',
+        completed: true
+    },
+    {
+        id: 2,
+        name: 'Take a nap',
+        completed: false
+    },
+    {
+        id: 3,
+        name: 'Create to-do app',
+        completed: true
+    },
+    {
+        id: 4,
+        name: 'Deploy to-do app',
+        completed: true
+    },
+];
+const todos = (state = initialState, action) => {
     switch (action.type) {
         case 'ADD':
             return [...state, {

@@ -8,7 +8,7 @@ class FilterOption extends Component {
     }
     render() {
         return (
-            <button onClick={this.changeFilter} disabled={this.props.currentSetting === this.props.filter}>{this.props.text}</button>
+            <button onClick={this.changeFilter} className={this.props.currentSetting === this.props.filter ? 'active' : ''}>{this.props.text}</button>
         );
     }
 }

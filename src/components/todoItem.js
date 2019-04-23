@@ -7,11 +7,14 @@ class TodoItem extends Component {
     this.props.toggleCompleteHandler(this.props);
   };
   render() {
-    const status = this.props.completed ? 'completed' : 'in progress';
     return (
-        <li>
-          <span>{this.props.name}</span>&nbsp;<i>({status})</i>&nbsp;<button onClick={this.remove}>delete</button>&nbsp;<button onClick={this.toggleComplete}>toggle</button>
-        </li>
+        <div className="list-item">
+          <div>
+            <input type="checkbox" checked={this.props.completed} onChange={this.toggleComplete} />
+            <span className={this.props.completed ? 'strike-text' : ''}>{this.props.name}</span>
+            <button className="danger-btn" onClick={this.remove}>delete</button>
+          </div>
+        </div>
     );
   }
 }

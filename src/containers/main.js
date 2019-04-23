@@ -64,10 +64,16 @@ class Main extends Component {
         const messageDiv = document.getElementById('message');
         const messageText = document.getElementById('message-text');
         messageText.innerHTML = message;
-        messageDiv.style.display = 'block';
+        messageDiv.classList.add('flex-row');
+        messageDiv.classList.add('center-content');
+        if (hideUndo) {
+            messageDiv.classList.add('warning');
+        }
         clearTimeout(this.displayMessageTimeout);
         this.displayMessageTimeout = setTimeout(() => {
-            messageDiv.style.display = 'none';
+            messageDiv.classList.remove('flex-row');
+            messageDiv.classList.remove('center-content');
+            messageDiv.classList.remove('warning');
         }, 3000);
     }
     render() {
@@ -75,12 +81,12 @@ class Main extends Component {
         return (
             <div className="main">
                 <Add add={this.add} lastId={this.props.lastId} />
+                <Filters setFilterHandler={this.setFilterHandler} currentSetting={this.props.currentFilterSetting} />
                 <div id="message">
                     <span id="message-text"></span>
                     <Undo />
                 </div>
                 <List todos={filteredTodos} removeItemHandler={this.removeItemHandler} toggleCompleteHandler={this.toggleCompleteHandler} />
-                <Filters setFilterHandler={this.setFilterHandler} currentSetting={this.props.currentFilterSetting} />
             </div>
         );
     }

@@ -5,11 +5,12 @@ class List extends Component {
   render() {
     const todos = this.props.todos;
     return (
-        <ul className="list">
+        <div className="list">
             {todos.map(todo => 
                 <TodoItem key={todo.id} removeItemHandler={this.props.removeItemHandler} toggleCompleteHandler={this.props.toggleCompleteHandler} {...todo} />    
             )}
-        </ul>
+            {todos.length === 0 ? 'No items meet filter criteria.' : ''}
+        </div>
     );
   }
 }
